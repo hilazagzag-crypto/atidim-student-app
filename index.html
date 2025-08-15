@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מדריך ליווי סטודנטים - עתידים</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 10px;
+        }
+        
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .nav-tab {
+            flex: 1;
+            padding: 12px 8px;
+            text-align: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.85em;
+            font-weight: 500;
+            color: #6c757d;
+            transition: all 0.3s;
+        }
+        
+        .nav-tab.active {
+            background: white;
+            color: #495057;
+            border-bottom: 3px solid #007bff;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .section {
+            margin-bottom: 20px;
+        }
+        
+        .section-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #343a40;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .contact-item {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            transition: transform 0.2s;
+        }
+        
+        .contact-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .contact-name {
+            font-weight: bold;
+            color: #495057;
+            margin-bottom: 5px;
+        }
+        
+        .contact-details {
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+        
+        .phone-link {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .phone-link:hover {
+            text-decoration: underline;
+        }
+        
+        .emergency-btn {
+            background: linear-gradient(135deg, #ff4757, #ff3838);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            width: 100%;
+            font-size: 1em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .emergency-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+        }
+        
+        .tips-item {
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .tips-title {
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 8px;
+        }
+        
+        .tips-content {
+            color: #636e72;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 8px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .checklist-item:hover {
+            background: #e9ecef;
+        }
+        
+        .checklist-checkbox {
+            margin-left: 10px;
+            transform: scale(1.2);
+        }
+        
+        .year-selector {
+            display: flex;
+            margin-bottom: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 5px;
+        }
+        
+        .year-btn {
+            flex: 1;
+            padding: 8px;
+            background: none;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s;
+        }
+        
+        .year-btn.active {
+            background: #007bff;
+            color: white;
+        }
+        
+        .resource-link {
+            display: block;
+            background: #e3f2fd;
+            border: 1px solid #90caf9;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #1565c0;
+            transition: all 0.3s;
+        }
+        
+        .resource-link:hover {
+            background: #bbdefb;
+            transform: translateX(-5px);
+        }
+        
+        .urgent-notice {
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-right: 4px solid #e17055;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 מדריך ליווי סטודנטים</h1>
+            <p>עתידים לתעשייה ולהייטק</p>
+        </div>
+        
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('emergency')">חירום</button>
+            <button class="nav-tab" onclick="showTab('contacts')">אנשי קשר</button>
+            <button class="nav-tab" onclick="showTab('guidance')">ליווי</button>
+            <button class="nav-tab" onclick="showTab('resources')">משאבים</button>
+        </div>
+        
+        <!-- טאב חירום -->
+        <div id="emergency" class="tab-content active">
+            <button class="emergency-btn" onclick="call('1201')">
+                🚨 ער"ן - עזרה ראשונה נפשית<br>
+                <small>*1201 - זמין 24/7</small>
+            </button>
+            
+            <button class="emergency-btn" onclick="window.open('https://sahar.org.il', '_blank')" style="background: linear-gradient(135deg, #6c5ce7, #a29bfe);">
+                💬 סהר - סיוע והקשבה ברשת<br>
+                <small>צ'אט אנונימי מיידי</small>
+            </button>
+            
+            <div class="section">
+                <div class="section-title">📞 מספרי חירום נוספים</div>
+                
+                <div class="contact-item">
+                    <div class="contact-name">מוקד נפגעי תקיפה מינית</div>
+                    <div class="contact-details">
+                        <a href="tel:1202" class="phone-link">*1202</a> - זמין 24/7
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-name">קו סיוע לנוער במצוקה</div>
+                    <div class="contact-details">
+                        <a href="tel:1201" class="phone-link">*1201</a> שלוחה 3
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-name">מוקד עזר מציון (סיוע כללי)</div>
+                    <div class="contact-details">
+                        <a href="tel:3464" class="phone-link">*3464</a> - 07:30-23:30
+                    </div>
+                </div>
+            </div>
+            
+            <div class="urgent-notice">
+                <strong>⚠️ חשוב לזכור:</strong><br>
+                אם סטודנט נמצא בסכנה מיידית - התקשרו למשטרה 100 או למד"א 101
+            </div>
+        </div>
+        
+        <!-- טאב אנשי קשר -->
+        <div id="contacts" class="tab-content">
+            <input type="text" class="search-box" placeholder="חיפוש אנשי קשר..." onkeyup="searchContacts(this.value)">
+            
+            <div class="section">
+                <div class="section-title">👥 צוות עתידים</div>
+                
+                <div class="contact-item" data-search="מורן רוזנברג צפון טכניון בראודה">
+                    <div class="contact-name">מורן רוזנברג - אזור צפון</div>
+                    <div class="contact-details">
+                        טכניון/בראודה<br>
+                        <a href="tel:0505999551" class="phone-link">050-5999551</a><br>
+                        <a href="mailto:northstudent@atidim.org.il" class="phone-link">northstudent@atidim.org.il</a>
+                    </div>
+                </div>
+                
+                <div class="contact-item" data-search="מעיין גלס מרכז">
+                    <div class="contact-name">מעיין גלס - אזור מרכז</div>
+                    <div class="contact-details">
+                        מוסדות אקדמיים במרכז<br>
+                        <a href="tel:0545696973" class="phone-link">054-5696973</a><br>
+                        <a href="mailto:maayang@atidim.org.il" class="phone-link">maayang@atidim.org.il</a>
+                    </div>
+                </div>
+                
+                <div class="contact-item" data-search="ליאן סלמה דרום ירושלים">
+                    <div class="contact-name">ליאן סלמה - דרום וירושלים</div>
+                    <div class="contact-details">
+                        אזור דרום וירושלים<br>
+                        <a href="tel:0547774273" class="phone-link">054-7774273</a><br>
+                        <a href="mailto:daromstudent@atidim.org.il" class="phone-link">daromstudent@atidim.org.il</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">🏛️ סיוע אקדמי</div>
+                
+                <div class="contact-item" data-search="דיקן סטודנטים">
+                    <div class="contact-name">דיקן הסטודנטים (כללי)</div>
+                    <div class="contact-details">
+                        לפי המוסד - יש לחפש באתר המוסד<br>
+                        בדרך כלל: dean.students@[university].ac.il
+                    </div>
+                </div>
+                
+                <div class="contact-item" data-search="מזכירות אקדמית">
+                    <div class="contact-name">מזכירות אקדמית</div>
+                    <div class="contact-details">
+                        לפי הפקולטה והמוסד<br>
+                        מידע על ציונים, תעודות, תכניות לימוד
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">💰 סיוע כלכלי</div>
+                
+                <div class="contact-item" data-search="מלגות מנהל סטודנטים">
+                    <div class="contact-name">מנהל לסטודנטים (מלגות)</div>
+                    <div class="contact-details">
+                        <a href="tel:026289580" class="phone-link">02-628-9580</a><br>
+                        info@mahar.gov.il
+                    </div>
+                </div>
+                
+                <div class="contact-item" data-search="טנא מלגות חרדי">
+                    <div class="contact-name">מלגת טנא (מגזר חרדי)</div>
+                    <div class="contact-details">
+                        <a href="https://www.tenne-aluma.org.il" class="phone-link">tenne-aluma.org.il</a><br>
+                        7,000-9,800 ש"ח לשנה
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- טאב ליווי -->
+        <div id="guidance" class="tab-content">
+            <div class="year-selector">
+                <button class="year-btn active" onclick="showYear(1)">שנה א'</button>
+                <button class="year-btn" onclick="showYear(2)">שנה ב'</button>
+                <button class="year-btn" onclick="showYear(3)">שנה ג'</button>
+                <button class="year-btn" onclick="showYear(4)">שנה ד'</button>
+            </div>
+            
+            <div id="year1" class="year-content">
+                <div class="section">
+                    <div class="section-title">📋 משימות שנה א'</div>
+                    
+                    <div class="checklist-item" onclick="toggleCheck(this)">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span>היכרות עם המערכת האקדמית</span>
+                    </div>
+                    
+                    <div class="checklist-item" onclick="toggleCheck(this)">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span>בדיקת זכאות למלגות</span>
+                    </div>
+                    
+                    <div class="checklist-item" onclick="toggleCheck(this)">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span>רישום לקורסי יסוד</span>
+                    </div>
+                    
+                    <div class="checklist-item" onclick="toggleCheck(this)">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span>בניית קשרים חברתיים</span>
+                    </div>
+                    
+                    <div class="checklist-item" onclick="toggleCheck(this)">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span>הכנת קורות חיים בסיסי</span>
+                    </div>
+                </div>
+                
+                <div class="tips-item">
+                    <div class="tips-title">💡 טיפ לשנה א'</div>
+                    <div class="tips-content">
+                        השנה הראשונה היא התבססות. התמקדו בלימודים ובניית יסודות חזקים. אל תלחצו על עצמכם למצוא עבודה מיד.
+                    </div>
+                </div>
+            </div>
+            
+            <div id="year2" class="year-content" style="display: none;">
+                <div class="section">
+                    <div class="section-title">📋 משימות שנה ב'</div>
+                    
+                    <div class="checklist-item" onclick="toggleCheck(this)">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span>התמחות בתחום ספציפי</span>
+                    </div>
+                    
+                    <div class="checklist-item" onclick="toggleCheck(this)">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span>חיפוש משרת סטודנט ראשונה</span>
+                    </div>
+                    
+                    <div class="checklist-item" onclick="toggleCheck(this)">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span>שיפור קורות החיים</span>
+                    </div>
+                    
+                    <div class="checklist-item" onclick="toggleCheck(this)">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span>בניית פרופיל LinkedIn</span>
+                    </div>
+                    
+                    <div class="checklist-item" onclick="toggleCheck(this)">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span>השתתפות בפרויקטים</span>
+                    </div>
+                </div>
+                
+                <div class="tips-item">
+                    <div class="tips-title">💡 טיפ לשנה ב'</div>
+                    <div class="tips-content">
+                        זה הזמן להתחיל לחפש משרת סטודנט. אל תפחדו מתפקידים פשוטים - כל ניסיון עוזר!
+                    </div>
+                </div>
+            </div>
+            
+            <div id="year3" class="year-content" style="
